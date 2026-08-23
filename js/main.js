@@ -69,21 +69,12 @@
 
   /* ---------- Hero flask animation ---------- */
   if (window.gsap && !prefersReduced){
-    var liquid = document.getElementById('liquidRect');
-    var drop1 = document.getElementById('drop1');
-    var drop2 = document.getElementById('drop2');
-    if (liquid){
-      gsap.fromTo(liquid, { attr:{ y:270, height:0 } }, { attr:{ y:170, height:100 }, duration:1.4, ease:'power2.out', delay:.4 });
-      gsap.to(liquid, { y:-4, duration:2.2, ease:'sine.inOut', yoyo:true, repeat:-1, delay:1.8 });
+    var flaskStage = document.getElementById('flaskStage');
+    if (flaskStage){
+      gsap.fromTo(flaskStage, { opacity:0, y:16, scale:.92 }, { opacity:1, y:0, scale:1, duration:.9, ease:'power2.out', delay:.3 });
+      gsap.to(flaskStage, { y:-10, duration:3, ease:'sine.inOut', yoyo:true, repeat:-1, delay:1.1 });
     }
-    if (drop1 && drop2){
-      gsap.set([drop1, drop2], { opacity:0 });
-      gsap.to(drop1, { y:130, opacity:1, duration:1.1, ease:'power1.in', repeat:-1, delay:1, repeatDelay:.6,
-        onRepeat:function(){ gsap.set(drop1, { y:0, opacity:0 }); } });
-      gsap.to(drop2, { y:118, opacity:1, duration:.9, ease:'power1.in', repeat:-1, delay:1.9, repeatDelay:1.1,
-        onRepeat:function(){ gsap.set(drop2, { y:0, opacity:0 }); } });
-    }
-    gsap.to('.flask-card', { y:-10, duration:3, ease:'sine.inOut', yoyo:true, repeat:-1 });
+    gsap.to('.flask-card', { y:-8, duration:3.4, ease:'sine.inOut', yoyo:true, repeat:-1 });
     gsap.to('.chip-1', { y:-8, duration:2.6, ease:'sine.inOut', yoyo:true, repeat:-1, delay:.2 });
     gsap.to('.chip-2', { y:8, duration:2.8, ease:'sine.inOut', yoyo:true, repeat:-1, delay:.4 });
     gsap.to('.chip-3', { y:-6, duration:2.4, ease:'sine.inOut', yoyo:true, repeat:-1, delay:.6 });
@@ -96,9 +87,7 @@
       return {
         el: card,
         lat: parseFloat(card.dataset.lat),
-        lng: parseFloat(card.dataset.lng),
-        name: card.dataset.name,
-        addr: card.querySelector('p').textContent
+        lng: parseFloat(card.dataset.lng)
       };
     });
 
@@ -119,8 +108,12 @@
     var markers = [];
     var bounds = [];
     branches.forEach(function(b, i){
-      var marker = L.marker([b.lat, b.lng], { icon:pinIcon, title:b.name }).addTo(map);
-      marker.bindPopup('<div class="popup-title">' + b.name + '</div><div class="popup-addr">' + b.addr + '</div>');
+      var marker = L.marker([b.lat, b.lng], { icon:pinIcon }).addTo(map);
+      marker.bindPopup(function(){
+        var name = b.el.querySelector('h3').textContent;
+        var addr = b.el.querySelector('p').textContent;
+        return '<div class="popup-title">' + name + '</div><div class="popup-addr">' + addr + '</div>';
+      });
       marker.on('click', function(){ setActive(i); });
       markers.push(marker);
       bounds.push([b.lat, b.lng]);
