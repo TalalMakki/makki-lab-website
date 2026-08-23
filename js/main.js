@@ -54,7 +54,7 @@
       });
 
       // Stagger feature/social cards within their grids
-      [['.features-grid', '.feature-card'], ['.contact-grid', '.social-card'], ['.stats-grid', '.stat']].forEach(function(pair){
+      [['.features-grid', '.feature-card'], ['.services-grid', '.service-card'], ['.testimonials-grid', '.testimonial-card'], ['.contact-grid', '.social-card'], ['.stats-grid', '.stat']].forEach(function(pair){
         var grid = document.querySelector(pair[0]);
         if (!grid) return;
         gsap.fromTo(grid.querySelectorAll(pair[1]), { opacity:0, y:26 }, {
