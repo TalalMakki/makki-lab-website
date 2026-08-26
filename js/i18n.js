@@ -129,6 +129,7 @@
       footer_quicklinks_title: "روابط سريعة",
       footer_contact_title: "تواصل معنا",
       footer_copyright: "معمل مكي للتحاليل الطبية. جميع الحقوق محفوظة.",
+      footer_credit: "تم إنشاء الموقع بواسطة",
 
       fab_wa_aria: "تواصل عبر واتساب"
     },
@@ -260,6 +261,7 @@
       footer_quicklinks_title: "Quick Links",
       footer_contact_title: "Contact Us",
       footer_copyright: "Makki Lab Medical Laboratories. All rights reserved.",
+      footer_credit: "Website created by",
 
       fab_wa_aria: "Contact us on WhatsApp"
     }
